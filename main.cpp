@@ -42,6 +42,7 @@ void LoadDictionary(const char* fname, int length, Trie& trie, int min_freq) {
   std::ifstream fin(fname);
   std::string line;
   while (std::getline(fin, line)) {
+    if (line[line.size() - 1] == '\r') line = line.substr(0, line.size() - 1);
     if (line.size() != length) { continue; }
     for (auto& c : line) c = toupper(c);
     if (g_freqs.size() > 0 && min_freq > 0) {
